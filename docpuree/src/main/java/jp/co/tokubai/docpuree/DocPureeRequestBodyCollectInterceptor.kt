@@ -17,6 +17,7 @@ object DocPureeRequestBodyCollectInterceptor : Interceptor {
         val response = chain.proceed(request)
         if (response.isSuccessful) {
             Log.d("RequestBody", buffer.readUtf8())
+            LogHistorySource.successfullyLoggedJsonHistory.add(buffer.readUtf8())
         }
 
         return response

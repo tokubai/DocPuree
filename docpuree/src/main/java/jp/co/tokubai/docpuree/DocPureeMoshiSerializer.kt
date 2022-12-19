@@ -11,7 +11,7 @@ class DocPureeMoshiSerializer : PureeSerializer {
     override fun serialize(value: Any): String {
         val adapter = moshi.adapter(value.javaClass)
         val json = adapter.toJson(value)
-        LogClassHistorySource.serializedClassHistory[value.javaClass.simpleName] = json
+        LogHistorySource.serializedClassHistory.add(value.javaClass.simpleName to json)
 
         return json
     }
