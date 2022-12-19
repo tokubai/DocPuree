@@ -11,7 +11,11 @@ object LogHistorySource {
     val successfullyLoggedClassHistory: List<Pair<String, String>>
         get() {
             return successfullyLoggedJsonHistory.mapNotNull { successfullyLoggedJson ->
-                serializedClassHistory.firstOrNull { it.second == successfullyLoggedJson }
+                val classToSingleJson =
+                    serializedClassHistory.firstOrNull { successfullyLoggedJson.contains(it.second) }
+                classToSingleJson?.let {
+                    it.first to successfullyLoggedJson
+                }
             }
         }
 }
