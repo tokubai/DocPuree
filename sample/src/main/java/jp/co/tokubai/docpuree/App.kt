@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.cookpad.puree.Puree
 import com.cookpad.puree.PureeConfiguration
+import jp.co.tokubai.docpuree.log.OutMockServer
+import jp.co.tokubai.docpuree.log.entities.RecipeSearch
 
 class App : Application() {
     override fun onCreate() {
@@ -14,7 +16,7 @@ class App : Application() {
     private fun buildPureeConfig(context: Context): PureeConfiguration {
         return PureeConfiguration.Builder(context)
             .pureeSerializer(DocPureeMoshiSerializer())
-//            .register(RecipeSearch::class.java, OutLogcat())
+            .register(RecipeSearch::class.java, OutMockServer())
             .build()
     }
 }
