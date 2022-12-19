@@ -13,8 +13,12 @@ object DocPureeRequestBodyCollectInterceptor : Interceptor {
         val buffer = Buffer()
         request.body?.writeTo(buffer)
 
-        Log.d("RequestBody", buffer.readUtf8())
 
-        return chain.proceed(request)
+        val response = chain.proceed(request)
+        if (response.isSuccessful) {
+            Log.d("RequestBody", buffer.readUtf8())
+        }
+
+        return response
     }
 }
