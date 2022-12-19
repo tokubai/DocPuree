@@ -6,7 +6,7 @@ import okhttp3.Response
 import okio.Buffer
 
 
-object DocPureeRequestBodyCollectInterceptor : Interceptor {
+class DocPureeRequestBodyCollectInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
