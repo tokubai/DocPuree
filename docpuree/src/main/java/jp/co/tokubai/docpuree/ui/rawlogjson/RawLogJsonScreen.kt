@@ -8,14 +8,29 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import jp.co.tokubai.docpuree.LogHistorySource
+import jp.co.tokubai.docpuree.ui.components.SearchAppBar
 import jp.co.tokubai.docpuree.ui.rawlogjson.components.RowLogJsonItem
 
 @Composable
-fun RawLogJsonScreen() {
-    Scaffold {
+fun RawLogJsonScreen(
+    viewModel: RawLogJsonViewModel,
+) {
+    val searchTextState by viewModel.searchTextState
+
+    Scaffold(
+        topBar = {
+            SearchAppBar(
+                text = searchTextState,
+                onTextChange = { viewModel.updateSearchTextState(it) },
+                onCloseClicked = { viewModel.updateSearchTextState("") },
+                onSearchClicked = {},
+            )
+        }
+    ) {
         RawLogJsonContent(modifier = Modifier.padding(it))
     }
 }

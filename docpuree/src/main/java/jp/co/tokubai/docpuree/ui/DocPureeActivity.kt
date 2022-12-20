@@ -3,6 +3,7 @@ package jp.co.tokubai.docpuree.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -18,10 +19,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import jp.co.tokubai.docpuree.ui.rawlogjson.RawLogJsonScreen
+import jp.co.tokubai.docpuree.ui.rawlogjson.RawLogJsonViewModel
 import jp.co.tokubai.docpuree.ui.searchlog.SearchLogScreen
 import jp.co.tokubai.docpuree.ui.theme.DocPureeTheme
 
 class DocPureeActivity : ComponentActivity() {
+    private val rawLogJsonViewModel by viewModels<RawLogJsonViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -47,7 +51,7 @@ class DocPureeActivity : ComponentActivity() {
                         }
 
                         composable(route = ScreenRoute.RawLogJsonScreen.route) {
-                            RawLogJsonScreen()
+                            RawLogJsonScreen(rawLogJsonViewModel)
                         }
                     }
                 }
