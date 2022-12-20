@@ -5,8 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,7 +17,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import jp.co.tokubai.docpuree.LogHistorySource
+import jp.co.tokubai.docpuree.ui.rawlogjson.RawLogJsonScreen
+import jp.co.tokubai.docpuree.ui.searchlog.SearchLogScreen
 import jp.co.tokubai.docpuree.ui.theme.DocPureeTheme
 
 class DocPureeActivity : ComponentActivity() {
@@ -27,11 +26,6 @@ class DocPureeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DocPureeTheme {
-                LazyColumn {
-                    items(LogHistorySource.successfullyLoggedClassHistory) { classToJson: Pair<String, String> ->
-                        Text(text = "Class: ${classToJson.first}, Json: ${classToJson.second}")
-                    }
-                }
 
                 val navController = rememberNavController()
                 Scaffold(
@@ -45,7 +39,7 @@ class DocPureeActivity : ComponentActivity() {
                     ) {
 
                         composable(route = ScreenRoute.SearchLogScreen.route) {
-                            // TODO 検索画面
+                            SearchLogScreen()
                         }
 
                         composable(route = ScreenRoute.CheckListScreen.route) {
@@ -53,7 +47,7 @@ class DocPureeActivity : ComponentActivity() {
                         }
 
                         composable(route = ScreenRoute.RawLogJsonScreen.route) {
-                            // TODO 生のJson一覧画面
+                            RawLogJsonScreen()
                         }
                     }
                 }

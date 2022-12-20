@@ -1,4 +1,4 @@
-package jp.co.tokubai.docpuree.ui
+package jp.co.tokubai.docpuree.ui.searchlog
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -7,17 +7,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun DocPureeScreen() {
+fun SearchLogScreen() {
     Scaffold {
-        DocPureeContent(modifier = Modifier.padding(it))
+        SearchLogContent(modifier = Modifier.padding(it))
     }
 }
 
 @Composable
-private fun DocPureeContent(modifier: Modifier = Modifier) {
+private fun SearchLogContent(modifier: Modifier = Modifier) {
 
     Column(modifier = modifier) {
 
     }
-
 }
