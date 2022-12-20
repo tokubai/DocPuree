@@ -1,4 +1,4 @@
-package jp.co.tokubai.docpuree.ui.ui.theme
+package jp.co.tokubai.docpuree.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

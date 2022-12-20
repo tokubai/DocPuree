@@ -1,4 +1,4 @@
-package jp.co.tokubai.docpuree.ui.ui.theme
+package jp.co.tokubai.docpuree.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
