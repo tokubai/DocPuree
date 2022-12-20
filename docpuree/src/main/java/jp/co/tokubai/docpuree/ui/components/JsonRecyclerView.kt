@@ -16,6 +16,7 @@ fun JsonRecyclerView(
             JsonRecyclerView(it).apply {
                 bindJson(json)
                 setScaleEnable(true)
+                // TODO expandAll (which is future api of json viewer added at Oct 3 still not released)
             }
         },
     )

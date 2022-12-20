@@ -1,5 +1,7 @@
 package jp.co.tokubai.docpuree.ui.rawlogjson
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,7 +22,11 @@ fun RawLogJsonScreen() {
 
 @Composable
 private fun RawLogJsonContent(modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier.fillMaxSize().padding(12.dp)) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(12.dp),
+        verticalArrangement = Arrangement.spacedBy(5.dp),
+    ) {
         items(LogHistorySource.successfullyLoggedClassHistory) { classToJson: Pair<String, String> ->
             RowLogJsonItem(classToJson = classToJson)
         }
