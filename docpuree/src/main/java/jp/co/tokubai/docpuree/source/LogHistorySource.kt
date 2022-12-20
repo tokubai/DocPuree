@@ -1,4 +1,4 @@
-package jp.co.tokubai.docpuree
+package jp.co.tokubai.docpuree.source
 
 object LogHistorySource {
     // Map of serialized Class to Json

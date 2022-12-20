@@ -2,7 +2,7 @@ package jp.co.tokubai.docpuree.extensions
 
 import com.cookpad.puree.PureeConfiguration
 import com.cookpad.puree.outputs.PureeOutput
-import jp.co.tokubai.docpuree.ui.DocSource
+import jp.co.tokubai.docpuree.source.DocSource
 
 fun PureeConfiguration.Builder.register(
     logClass: Class<*>,

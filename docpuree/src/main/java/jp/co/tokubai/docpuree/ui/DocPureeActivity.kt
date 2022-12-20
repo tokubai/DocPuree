@@ -18,13 +18,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import jp.co.tokubai.docpuree.ui.checklist.CheckListScreen
+import jp.co.tokubai.docpuree.ui.checklist.CheckListViewModel
 import jp.co.tokubai.docpuree.ui.rawlogjson.RawLogJsonScreen
 import jp.co.tokubai.docpuree.ui.rawlogjson.RawLogJsonViewModel
 import jp.co.tokubai.docpuree.ui.searchlog.SearchLogScreen
+import jp.co.tokubai.docpuree.ui.searchlog.SearchLogViewModel
 import jp.co.tokubai.docpuree.ui.theme.DocPureeTheme
 
 class DocPureeActivity : ComponentActivity() {
     private val rawLogJsonViewModel by viewModels<RawLogJsonViewModel>()
+    private val searchLogViewModel by viewModels<SearchLogViewModel>()
+    private val checkListViewModel by viewModels<CheckListViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +48,11 @@ class DocPureeActivity : ComponentActivity() {
                     ) {
 
                         composable(route = ScreenRoute.SearchLogScreen.route) {
-                            SearchLogScreen()
+                            SearchLogScreen(searchLogViewModel)
                         }
 
                         composable(route = ScreenRoute.CheckListScreen.route) {
-                            // TODO チェックリスト画面
+                            CheckListScreen(checkListViewModel)
                         }
 
                         composable(route = ScreenRoute.RawLogJsonScreen.route) {
@@ -95,8 +100,12 @@ fun RowScope.AddItem(
         selected = currentDestination?.hierarchy?.any { it.route == menuItem.route.route } == true,
         onClick = {
             // Navigate only when current route and destination is not the same
-            if (navController.currentDestination?.route != menuItem.route.route) {
-                navController.navigate(menuItem.route.route) { popUpTo(ScreenRoute.SearchLogScreen.route) }
+            if (currentDestination?.route != menuItem.route.route) {
+                if (menuItem.route.route == ScreenRoute.SearchLogScreen.route) {
+                    navController.popBackStack(ScreenRoute.SearchLogScreen.route, false)
+                } else {
+                    navController.navigate(menuItem.route.route) { popUpTo(ScreenRoute.SearchLogScreen.route) }
+                }
             }
         },
     )

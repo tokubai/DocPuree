@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,17 +14,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.halilibo.richtext.markdown.Markdown
 import com.halilibo.richtext.ui.RichText
-import jp.co.tokubai.docpuree.ui.DocSource
+import jp.co.tokubai.docpuree.source.DocSource
 
 @Composable
-fun SearchLogScreen() {
+fun SearchLogScreen(
+    viewModel: SearchLogViewModel,
+) {
     Scaffold {
-        SearchLogContent(modifier = Modifier.padding(it))
+        SearchLogContent(modifier = Modifier.padding(it), viewModel = viewModel)
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun SearchLogContent(modifier: Modifier = Modifier) {
+private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLogViewModel) {
 
     LazyColumn(modifier = modifier, contentPadding = PaddingValues(12.dp)) {
         items(DocSource.classToRawMarkdownMap.toList()) { classToMarkdown ->
@@ -31,6 +35,7 @@ private fun SearchLogContent(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(10.dp),
+                onClick = { viewModel.addLogToCheckList(classToMarkdown.first) },
                 backgroundColor = Color.White,
             ) {
                 RichText(modifier = Modifier.padding(5.dp)) {

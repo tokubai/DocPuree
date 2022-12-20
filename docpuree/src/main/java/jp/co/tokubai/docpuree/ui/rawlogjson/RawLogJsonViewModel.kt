@@ -5,7 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import jp.co.tokubai.docpuree.LogHistorySource
+import jp.co.tokubai.docpuree.source.LogHistorySource
 import kotlinx.coroutines.launch
 
 class RawLogJsonViewModel : ViewModel() {

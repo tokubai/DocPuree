@@ -3,6 +3,7 @@ package jp.co.tokubai.docpuree
 import com.cookpad.puree.PureeSerializer
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import jp.co.tokubai.docpuree.source.LogHistorySource
 
 class DocPureeMoshiSerializer : PureeSerializer {
 
