@@ -75,7 +75,9 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
-    // JsonViewer
+    // Json Viewer
     implementation 'com.github.smuyyh:JsonViewer:1.0.7'
 
+    // Markdown Viewer
+    implementation "com.halilibo.compose-richtext:richtext-commonmark:0.16.0"
 }
