@@ -29,7 +29,7 @@ class RawLogJsonViewModel : ViewModel() {
         viewModelScope.launch {
             _state.value = RawLogJsonState.Filtering
             val filteredResult = jsonLogs.filter {
-                (it.first + it.second).contains(_searchTextState.value)
+                return@filter (it.first + it.second).contains(_searchTextState.value)
             }
             _state.value = RawLogJsonState.Success(filteredResult)
         }

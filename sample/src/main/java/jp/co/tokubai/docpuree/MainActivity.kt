@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
             DocPureeTheme {
                 // A surface container using the 'background' color from the theme
                 repeat(10) {
-                    Puree.send(RecipeSearch("hello", 1))
+                    Puree.send(RecipeSearch("hello", it))
                 }
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     Button(onClick = {
                         val intent = Intent(this@MainActivity, DocPureeActivity::class.java)
                         startActivity(intent)
-                        Puree.send(RecipeSearch("onClick", 2))
+                        Puree.send(RecipeSearch("onClick", (1..10).random()))
                     }) {
                         Text(text = "DocPureeActivity")
                     }

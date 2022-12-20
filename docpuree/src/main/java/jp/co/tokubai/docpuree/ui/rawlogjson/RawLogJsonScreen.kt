@@ -49,7 +49,7 @@ private fun RawLogJsonContent(
                 contentPadding = PaddingValues(12.dp),
                 verticalArrangement = Arrangement.spacedBy(5.dp),
             ) {
-                items(state.data) { classToJson: Pair<String, String> ->
+                items(items = state.data, key = { it }) { classToJson: Pair<String, String> ->
                     RowLogJsonItem(classToJson = classToJson)
                 }
             }
