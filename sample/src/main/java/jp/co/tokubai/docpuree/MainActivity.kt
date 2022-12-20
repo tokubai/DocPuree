@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             DocPureeTheme {
                 // A surface container using the 'background' color from the theme
-                repeat(1) {
+                repeat(10) {
                     Puree.send(RecipeSearch("hello", 1))
                 }
                 Surface(
