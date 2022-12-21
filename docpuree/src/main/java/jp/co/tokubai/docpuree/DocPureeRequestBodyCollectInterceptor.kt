@@ -20,6 +20,7 @@ class DocPureeRequestBodyCollectInterceptor : Interceptor {
             val responseBody = buffer.readUtf8()
             Log.d("RequestBody", responseBody)
             LogHistorySource.successfullyLoggedJsonHistory.add(responseBody)
+            LogHistorySource.successfullyLoggedJson.value = responseBody
         }
 
         return response
