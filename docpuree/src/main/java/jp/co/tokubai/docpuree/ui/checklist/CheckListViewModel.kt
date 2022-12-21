@@ -2,9 +2,9 @@ package jp.co.tokubai.docpuree.ui.checklist
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import jp.co.tokubai.docpuree.source.CheckListSource
 import jp.co.tokubai.docpuree.source.LogHistorySource
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -14,10 +14,12 @@ class CheckListViewModel : ViewModel() {
     }
 
     val checkList = CheckListSource.checkList
-    val latestLog = LogHistorySource.successfullyLoggedJson
 
     private fun observeLoggedClass() {
         LogHistorySource.successfullyLoggedJson.onEach { successfullyLoggedJson ->
+            // Do nothing when successfullyLoggedJson is equal to last checked item
+            if (successfullyLoggedJson == CheckListSource.checkList.lastOrNull { it.isLogged }?.successfullyLoggedJson) return@onEach
+
             val nextCheckListItem = CheckListSource.checkList.firstOrNull { !it.isLogged }
             nextCheckListItem?.let { checkItem ->
                 val isCheckItemIsLogged =
@@ -25,10 +27,10 @@ class CheckListViewModel : ViewModel() {
                         successfullyLoggedJson
                     )
                 if (isCheckItemIsLogged) {
-                    nextCheckListItem.isLogged = true
+                    nextCheckListItem.successfullyLoggedJson = successfullyLoggedJson
                     Log.d("CheckList", CheckListSource.checkList.toString())
                 }
             }
-        }.launchIn(GlobalScope)
+        }.launchIn(viewModelScope)
     }
 }
