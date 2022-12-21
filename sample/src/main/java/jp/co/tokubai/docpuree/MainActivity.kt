@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     Button(onClick = {
                         val intent = Intent(this@MainActivity, DocPureeActivity::class.java)
                         startActivity(intent)
-                        Puree.send(RecipeSearch("onClick", (1..100).random()))
+                        Puree.send(RecipeSearch("onClick", (1..Int.MAX_VALUE).random()))
                     }) {
                         Text(text = "DocPureeActivity")
                     }

@@ -22,7 +22,7 @@ object LogHistorySource {
             }
         }
 
-    fun getClassFromLoggedJson(loggedJson: String) : String? {
-        return serializedClassHistory.firstOrNull { loggedJson.contains(it.second) }?.first
+    fun getClassesFromLoggedJson(loggedJson: String) : List<String> {
+        return serializedClassHistory.filter { loggedJson.contains(it.second) }.map { it.first }
     }
 }

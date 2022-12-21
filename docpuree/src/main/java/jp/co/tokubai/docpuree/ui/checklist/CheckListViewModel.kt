@@ -20,15 +20,15 @@ class CheckListViewModel : ViewModel() {
             // Do nothing when successfullyLoggedJson is equal to last checked item
             if (successfullyLoggedJson == CheckListSource.checkList.lastOrNull { it.isLogged }?.successfullyLoggedJson) return@onEach
 
-            val nextCheckListItem = CheckListSource.checkList.firstOrNull { !it.isLogged }
-            nextCheckListItem?.let { checkItem ->
-                val isCheckItemIsLogged =
-                    checkItem.clazz.simpleName == LogHistorySource.getClassFromLoggedJson(
-                        successfullyLoggedJson
-                    )
-                if (isCheckItemIsLogged) {
-                    nextCheckListItem.successfullyLoggedJson = successfullyLoggedJson
-                    Log.d("CheckList", CheckListSource.checkList.toString())
+            // new
+            LogHistorySource.getClassesFromLoggedJson(successfullyLoggedJson).forEach { className ->
+                val nextCheckItem = CheckListSource.checkList.firstOrNull{ !it.isLogged }
+                nextCheckItem?.let { checkListItem ->
+                    val isCheckItemLogged = checkListItem.clazz.simpleName == className
+                    if (isCheckItemLogged) {
+                        checkListItem.successfullyLoggedJson = successfullyLoggedJson
+                        Log.d("CheckList", CheckListSource.checkList.toString())
+                    }
                 }
             }
         }.launchIn(viewModelScope)
