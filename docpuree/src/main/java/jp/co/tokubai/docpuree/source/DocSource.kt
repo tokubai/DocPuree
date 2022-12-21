@@ -1,5 +1,7 @@
 package jp.co.tokubai.docpuree.source
 
+import jp.co.tokubai.docpuree.model.DocItem
+
 object DocSource {
-    val classToRawMarkdownMap: MutableMap<Class<*>, String> = mutableMapOf()
+    val docSet: MutableSet<DocItem> = mutableSetOf()
 }

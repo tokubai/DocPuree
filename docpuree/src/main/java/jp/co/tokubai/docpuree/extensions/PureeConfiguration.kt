@@ -2,6 +2,7 @@ package jp.co.tokubai.docpuree.extensions
 
 import com.cookpad.puree.PureeConfiguration
 import com.cookpad.puree.outputs.PureeOutput
+import jp.co.tokubai.docpuree.model.DocItem
 import jp.co.tokubai.docpuree.source.DocSource
 
 fun PureeConfiguration.Builder.register(
@@ -9,6 +10,6 @@ fun PureeConfiguration.Builder.register(
     output: PureeOutput,
     docRawMarkdown: String,
 ): PureeConfiguration.Builder {
-    DocSource.classToRawMarkdownMap[logClass] = docRawMarkdown
+    DocSource.docSet.add(DocItem(clazz = logClass, rawMarkdown = docRawMarkdown))
     return register(logClass, output)
 }
