@@ -2,7 +2,7 @@ package jp.co.tokubai.docpuree.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -31,12 +31,12 @@ sealed class BottomBarMenuItem(
     object CheckList : BottomBarMenuItem(
         route = ScreenRoute.CheckListScreen,
         titleRes = R.string.check_list,
-        icon = Icons.Default.List,
+        icon = Icons.Default.Check,
     )
 
     object RawLogJson : BottomBarMenuItem(
         route = ScreenRoute.RawLogJsonScreen,
         titleRes = R.string.json,
-        icon = Icons.Default.AccountBox,
+        icon = Icons.Default.List,
     )
 }

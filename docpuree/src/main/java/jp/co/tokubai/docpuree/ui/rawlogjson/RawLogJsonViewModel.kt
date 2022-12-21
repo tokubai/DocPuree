@@ -28,7 +28,7 @@ class RawLogJsonViewModel : ViewModel() {
     fun filterLoggedJson() {
         viewModelScope.launch {
             _state.value = RawLogJsonState.Filtering
-            val filteredResult = jsonLogs.filter {
+            val filteredResult = LogHistorySource.successfullyLoggedClassHistory.filter {
                 return@filter (it.first + it.second).contains(_searchTextState.value)
             }
             _state.value = RawLogJsonState.Success(filteredResult)
