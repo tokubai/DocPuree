@@ -21,10 +21,10 @@ class CheckListViewModel : ViewModel() {
             if (successfullyLoggedJson == CheckListSource.checkList.lastOrNull { it.isLogged }?.successfullyLoggedJson) return@onEach
 
             // new
-            LogHistorySource.getClassesFromLoggedJson(successfullyLoggedJson).forEach { className ->
+            LogHistorySource.getClassesFromLoggedJson(successfullyLoggedJson).forEach { clazz ->
                 val nextCheckItem = CheckListSource.checkList.firstOrNull{ !it.isLogged }
                 nextCheckItem?.let { checkListItem ->
-                    val isCheckItemLogged = checkListItem.clazz.simpleName == className
+                    val isCheckItemLogged = checkListItem.clazz.simpleName == clazz.simpleName
                     if (isCheckItemLogged) {
                         checkListItem.successfullyLoggedJson = successfullyLoggedJson
                         Log.d("CheckList", CheckListSource.checkList.toString())

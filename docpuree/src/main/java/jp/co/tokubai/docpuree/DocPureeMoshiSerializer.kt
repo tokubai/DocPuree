@@ -4,6 +4,7 @@ import com.cookpad.puree.PureeSerializer
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import jp.co.tokubai.docpuree.source.LogHistorySource
+import jp.co.tokubai.docpuree.model.SerializedClassInfo
 
 class DocPureeMoshiSerializer : PureeSerializer {
 
@@ -12,7 +13,7 @@ class DocPureeMoshiSerializer : PureeSerializer {
     override fun serialize(value: Any): String {
         val adapter = moshi.adapter(value.javaClass)
         val json = adapter.toJson(value)
-        LogHistorySource.serializedClassHistory.add(value.javaClass.simpleName to json)
+        LogHistorySource.serializedClassHistory.add(SerializedClassInfo(value.javaClass, json))
 
         return json
     }

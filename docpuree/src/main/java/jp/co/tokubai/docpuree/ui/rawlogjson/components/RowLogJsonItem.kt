@@ -12,12 +12,12 @@ import jp.co.tokubai.docpuree.ui.components.JsonRecyclerView
 
 @Composable
 fun RowLogJsonItem(
-    classToJson: Pair<String, String>,
+    classToJson: Pair<Class<*>, String>,
     modifier: Modifier = Modifier,
 ) {
     Card(modifier = modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(5.dp)) {
-            Text(text = classToJson.first)
+            Text(text = classToJson.first.simpleName)
             JsonRecyclerView(json = classToJson.second)
         }
     }
