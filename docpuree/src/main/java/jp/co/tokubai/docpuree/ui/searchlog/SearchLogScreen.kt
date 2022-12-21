@@ -33,23 +33,23 @@ private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLog
     val context = LocalContext.current
 
     LazyColumn(modifier = modifier, contentPadding = PaddingValues(12.dp)) {
-        items(DocSource.classToRawMarkdownMap.toList()) { classToMarkdown ->
+        items(DocSource.docSet.toList()) { logDocument ->
             Card(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(10.dp),
                 onClick = {
-                    viewModel.addLogToCheckList(classToMarkdown.first)
+                    viewModel.addLogToCheckList(logDocument.clazz)
                     Toast.makeText(
                         context,
-                        "Add ${classToMarkdown.first.simpleName} to checklist.",
+                        "Add ${logDocument.clazz.simpleName} to checklist.",
                         Toast.LENGTH_SHORT,
                     ).show()
                 },
                 backgroundColor = Color.White,
             ) {
                 RichText(modifier = Modifier.padding(5.dp)) {
-                    Markdown(content = classToMarkdown.second)
+                    Markdown(content = logDocument.rawMarkdown)
                 }
             }
         }
