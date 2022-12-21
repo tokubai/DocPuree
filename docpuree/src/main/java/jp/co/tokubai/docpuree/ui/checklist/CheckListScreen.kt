@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import jp.co.tokubai.docpuree.ui.checklist.components.CheckListAppBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -32,7 +33,9 @@ fun CheckListScreen(viewModel: CheckListViewModel) {
 
     val refreshState = rememberPullRefreshState(refreshing, ::refresh)
 
-    Scaffold {
+    Scaffold(
+        topBar = { CheckListAppBar(checkList = viewModel.checkList, isRefreshing = refreshing) }
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
