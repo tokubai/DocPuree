@@ -34,7 +34,13 @@ fun CheckListScreen(viewModel: CheckListViewModel) {
     val refreshState = rememberPullRefreshState(refreshing, ::refresh)
 
     Scaffold(
-        topBar = { CheckListAppBar(checkList = viewModel.checkList, isRefreshing = refreshing) }
+        topBar = {
+            CheckListAppBar(
+                checkList = viewModel.checkList,
+                isRefreshing = refreshing,
+                onClickClear = { viewModel.clearCheckList() },
+            )
+        }
     ) {
         Box(
             modifier = Modifier
@@ -72,6 +78,7 @@ private fun CheckListContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         imageVector = isLoggedIcon,
@@ -81,7 +88,9 @@ private fun CheckListContent(
                     Spacer(modifier = modifier.padding(10.dp))
                     Column {
                         Text(text = checkListItem.clazz.simpleName)
-                        Text(text = checkListItem.successfullyLoggedJson ?: "", color = Color.Green)
+                        checkListItem.successfullyLoggedJson?.let {
+                            Text(text = it, color = Color.Green)
+                        }
                     }
                 }
             }

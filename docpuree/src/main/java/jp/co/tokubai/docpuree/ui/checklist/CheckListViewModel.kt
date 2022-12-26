@@ -15,6 +15,10 @@ class CheckListViewModel : ViewModel() {
 
     val checkList = CheckListSource.checkList
 
+    fun clearCheckList() {
+        CheckListSource.checkList.clear()
+    }
+
     private fun observeLoggedClass() {
         LogHistorySource.successfullyLoggedJson.onEach { successfullyLoggedJson ->
             // Do nothing when successfullyLoggedJson is equal to last checked item

@@ -15,6 +15,7 @@ import jp.co.tokubai.docpuree.ui.theme.DocPureeTheme
 fun CheckListAppBar(
     checkList: List<CheckListItem>,
     isRefreshing: Boolean,
+    onClickClear: () -> Unit,
 ) {
     val isCheckListCompleted = checkList.all { it.isLogged }
 
@@ -38,6 +39,9 @@ fun CheckListAppBar(
             }
         },
         title = { Text(text = title) },
+        actions = { TextButton(onClick = { onClickClear() }) {
+           Text(text = "Clear", color = Color.White)
+        }},
     )
 }
 
@@ -46,9 +50,9 @@ fun CheckListAppBar(
 private fun CheckListAppBarPreview() {
     DocPureeTheme {
         Column {
-            CheckListAppBar(checkList = emptyList(), isRefreshing = false)
-            CheckListAppBar(checkList = listOf(CheckListItem(Any::class.java)), isRefreshing = false)
-            CheckListAppBar(checkList = emptyList(), isRefreshing = true)
+            CheckListAppBar(checkList = emptyList(), isRefreshing = false, onClickClear = {})
+            CheckListAppBar(checkList = listOf(CheckListItem(Any::class.java)), isRefreshing = false, onClickClear = {})
+            CheckListAppBar(checkList = emptyList(), isRefreshing = true, onClickClear = {})
         }
     }
 }
