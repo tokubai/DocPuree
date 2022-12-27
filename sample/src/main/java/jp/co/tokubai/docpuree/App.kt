@@ -7,6 +7,7 @@ import com.cookpad.puree.PureeConfiguration
 import jp.co.tokubai.docpuree.extensions.register
 import jp.co.tokubai.docpuree.log.BufferOutMockServer
 import jp.co.tokubai.docpuree.log.entities.RecipeSearch
+import jp.co.tokubai.docpuree.model.LogInfo
 
 class App : Application() {
     override fun onCreate() {
@@ -17,7 +18,7 @@ class App : Application() {
     private fun buildPureeConfig(context: Context): PureeConfiguration {
         return PureeConfiguration.Builder(context)
             .pureeSerializer(DocPureeMoshiSerializer())
-            .register(RecipeSearch::class.java, BufferOutMockServer(), RecipeSearch.rawMarkdown)
+            .register(RecipeSearch::class.java, BufferOutMockServer(), RecipeSearch.rawMarkdown, LogInfo(RecipeSearch::class.java, description = "レシピ検索に関連するログ", category = "recipe", params = listOf()))
 //            .register(RecipeSearch::class.java, OutMockServer())
             .build()
     }
