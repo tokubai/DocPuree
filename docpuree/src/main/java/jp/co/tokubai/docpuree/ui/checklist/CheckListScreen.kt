@@ -63,7 +63,7 @@ private fun CheckListContent(
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(12.dp),
-        verticalArrangement = Arrangement.spacedBy(5.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         items(viewModel.checkList) { checkListItem ->
             val isLoggedIcon = if (checkListItem.isLogged) {
@@ -73,11 +73,11 @@ private fun CheckListContent(
             }
             val isLoggedIconColor = if (checkListItem.isLogged) Color.Cyan else Color.Red
 
-            Card(backgroundColor = Color.Black, contentColor = Color.White) {
+            Card {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(12.dp),
+                        .padding(6.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(

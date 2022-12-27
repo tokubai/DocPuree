@@ -34,8 +34,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Column(
-                        modifier = Modifier.padding(5.dp),
-                        verticalArrangement = Arrangement.spacedBy(5.dp),
+                        modifier = Modifier.padding(12.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         Button(
                             onClick = {

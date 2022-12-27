@@ -27,7 +27,11 @@ internal fun SearchLogScreen(
 private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLogViewModel) {
     val context = LocalContext.current
 
-    LazyColumn(modifier = modifier, contentPadding = PaddingValues(5.dp)) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = PaddingValues(12.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
         items(DocSource.logDocSet.toList()) { logDoc ->
             Card(
                 modifier = Modifier.fillMaxSize(),
@@ -39,7 +43,6 @@ private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLog
                         Toast.LENGTH_SHORT,
                     ).show()
                 },
-                backgroundColor = Color.White,
             ) {
                 Column(modifier = Modifier.padding(10.dp)) {
                     // Title
@@ -97,7 +100,6 @@ private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLog
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(5.dp))
         }
     }
 }

@@ -74,7 +74,7 @@ private fun RawLogJsonContent(
             LazyColumn(
                 modifier = modifier.fillMaxSize(),
                 contentPadding = PaddingValues(12.dp),
-                verticalArrangement = Arrangement.spacedBy(5.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 items(items = state.successfullyLoggedJsonHistory, key = { it }) { classToJson ->
                     RowLogJsonItem(json = classToJson)
