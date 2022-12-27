@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 internal class RawLogJsonViewModel : ViewModel() {
 
     private val _state: MutableState<RawLogJsonState> =
-        mutableStateOf(RawLogJsonState.Success(LogHistorySource.successfullyLoggedClassHistory))
+        mutableStateOf(RawLogJsonState.Success(LogHistorySource.successfullyLoggedJsonHistory))
     val state: State<RawLogJsonState> = _state
 
     private val _searchTextState: MutableState<String> =
@@ -25,8 +25,8 @@ internal class RawLogJsonViewModel : ViewModel() {
     fun filterLoggedJson() {
         viewModelScope.launch {
             _state.value = RawLogJsonState.Filtering
-            val filteredResult = LogHistorySource.successfullyLoggedClassHistory.filter {
-                return@filter (it.first.simpleName + it.second).contains(_searchTextState.value)
+            val filteredResult = LogHistorySource.successfullyLoggedJsonHistory.filter {
+                return@filter it.contains(_searchTextState.value)
             }
             _state.value = RawLogJsonState.Success(filteredResult)
         }

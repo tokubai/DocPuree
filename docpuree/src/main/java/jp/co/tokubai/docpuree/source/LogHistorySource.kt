@@ -11,19 +11,7 @@ internal object LogHistorySource {
     val successfullyLoggedJsonHistory = mutableListOf<String>()
     val successfullyLoggedJson = MutableStateFlow("")
 
-    // Successfully Logged classes
-    val successfullyLoggedClassHistory: List<Pair<Class<*>, String>>
-        get() {
-            return successfullyLoggedJsonHistory.mapNotNull { successfullyLoggedJson ->
-                val classToSingleJson =
-                    serializedClassHistory.firstOrNull { successfullyLoggedJson.contains(it.json) }
-                classToSingleJson?.let {
-                    it.clazz to successfullyLoggedJson
-                }
-            }
-        }
-
-    fun getClassesFromLoggedJson(loggedJson: String) : List<Class<*>> {
+    internal fun getClassesFromLoggedJson(loggedJson: String) : List<Class<*>> {
         return serializedClassHistory.filter { loggedJson.contains(it.json) }.map { it.clazz }
     }
 }

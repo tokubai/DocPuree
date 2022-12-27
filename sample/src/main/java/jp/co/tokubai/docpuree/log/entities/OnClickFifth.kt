@@ -11,7 +11,7 @@ data class OnClickFifth(
     companion object {
         val docPureeLogDocItem = LogDocItem(
             clazz = OnClickFifth::class.java,
-            description = "5stをクリックした時のログ",
+            description = "5shをクリックした時のログ",
             category = "Click Log",
             params = listOf(
                 LogDocItem.ParamInfo(title = "event", description = "イベント名"),

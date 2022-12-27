@@ -20,7 +20,7 @@ import jp.co.tokubai.docpuree.ui.theme.DocPureeTheme
 class MainActivity : ComponentActivity() {
 
     private fun showNotifyLoggedToast(loggedClass: Class<*>) {
-        Toast.makeText(this, loggedClass.simpleName + "is on Logging queue", Toast.LENGTH_SHORT)
+        Toast.makeText(this, loggedClass.simpleName + " is on Logging queue", Toast.LENGTH_SHORT)
             .show()
     }
 

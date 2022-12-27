@@ -76,8 +76,8 @@ private fun RawLogJsonContent(
                 contentPadding = PaddingValues(12.dp),
                 verticalArrangement = Arrangement.spacedBy(5.dp),
             ) {
-                items(items = state.data, key = { it }) { classToJson ->
-                    RowLogJsonItem(classToJson = classToJson)
+                items(items = state.successfullyLoggedJsonHistory, key = { it }) { classToJson ->
+                    RowLogJsonItem(json = classToJson)
                 }
             }
         }
