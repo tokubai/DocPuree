@@ -19,7 +19,7 @@ import com.halilibo.richtext.ui.RichText
 import jp.co.tokubai.docpuree.source.DocSource
 
 @Composable
-fun SearchLogScreen(
+internal fun SearchLogScreen(
     viewModel: SearchLogViewModel,
 ) {
     Scaffold {

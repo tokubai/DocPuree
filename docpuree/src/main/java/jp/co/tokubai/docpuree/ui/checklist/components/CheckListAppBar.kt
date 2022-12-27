@@ -12,7 +12,7 @@ import jp.co.tokubai.docpuree.model.CheckListItem
 import jp.co.tokubai.docpuree.ui.theme.DocPureeTheme
 
 @Composable
-fun CheckListAppBar(
+internal fun CheckListAppBar(
     checkList: List<CheckListItem>,
     isRefreshing: Boolean,
     onClickClear: () -> Unit,

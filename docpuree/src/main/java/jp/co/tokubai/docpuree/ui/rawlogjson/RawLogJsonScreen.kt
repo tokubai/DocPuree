@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RawLogJsonScreen(
+internal fun RawLogJsonScreen(
     viewModel: RawLogJsonViewModel,
 ) {
     val searchTextState by viewModel.searchTextState

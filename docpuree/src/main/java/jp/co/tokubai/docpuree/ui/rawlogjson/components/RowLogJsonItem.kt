@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import jp.co.tokubai.docpuree.ui.components.JsonRecyclerView
 
 @Composable
-fun RowLogJsonItem(
+internal fun RowLogJsonItem(
     classToJson: Pair<Class<*>, String>,
     modifier: Modifier = Modifier,
 ) {

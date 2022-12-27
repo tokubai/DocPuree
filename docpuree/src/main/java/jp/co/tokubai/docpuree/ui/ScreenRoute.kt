@@ -8,14 +8,14 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 import jp.co.tokubai.docpuree.R
 
-sealed class ScreenRoute(val route: String) {
+internal sealed class ScreenRoute(val route: String) {
 
     object SearchLogScreen : ScreenRoute(route = "search-log")
     object CheckListScreen : ScreenRoute(route = "check-list")
     object RawLogJsonScreen : ScreenRoute(route = "raw-log-json")
 }
 
-sealed class BottomBarMenuItem(
+internal sealed class BottomBarMenuItem(
     val route: ScreenRoute,
     @StringRes
     val titleRes: Int,

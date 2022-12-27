@@ -66,7 +66,7 @@ class DocPureeActivity : ComponentActivity() {
 }
 
 @Composable
-fun BottomBar(
+internal fun BottomBar(
     navController: NavHostController,
 ) {
     val menuItems = listOf(
@@ -89,7 +89,7 @@ fun BottomBar(
 }
 
 @Composable
-fun RowScope.AddItem(
+internal fun RowScope.AddItem(
     menuItem: BottomBarMenuItem,
     currentDestination: NavDestination?,
     navController: NavHostController,

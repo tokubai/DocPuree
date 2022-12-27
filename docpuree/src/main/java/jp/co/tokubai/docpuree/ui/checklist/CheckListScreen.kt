@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CheckListScreen(viewModel: CheckListViewModel) {
+internal fun CheckListScreen(viewModel: CheckListViewModel) {
     val refreshScope = rememberCoroutineScope()
     var refreshing by remember { mutableStateOf(false) }
 

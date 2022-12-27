@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import jp.co.tokubai.docpuree.source.LogHistorySource
 import kotlinx.coroutines.launch
 
-class RawLogJsonViewModel : ViewModel() {
+internal class RawLogJsonViewModel : ViewModel() {
 
     private val _state: MutableState<RawLogJsonState> =
         mutableStateOf(RawLogJsonState.Success(LogHistorySource.successfullyLoggedClassHistory))

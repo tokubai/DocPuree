@@ -8,12 +8,12 @@ import jp.co.tokubai.docpuree.source.LogHistorySource
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class CheckListViewModel : ViewModel() {
+internal class CheckListViewModel : ViewModel() {
     init {
         observeLoggedClass()
     }
 
-    val checkList = CheckListSource.checkList
+    internal val checkList = CheckListSource.checkList
 
     fun clearCheckList() {
         CheckListSource.checkList.clear()

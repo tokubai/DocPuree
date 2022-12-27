@@ -6,7 +6,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.yuyh.jsonviewer.library.JsonRecyclerView
 
 @Composable
-fun JsonRecyclerView(
+internal fun JsonRecyclerView(
     modifier: Modifier = Modifier,
     json: String,
 ) {
