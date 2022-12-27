@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -30,13 +32,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
-                    Button(onClick = {
-                        val intent = Intent(this@MainActivity, DocPureeActivity::class.java)
-                        startActivity(intent)
-                        Puree.send(RecipeSearch("onClick", (1..Int.MAX_VALUE).random()))
-                    }) {
-                        Text(text = "DocPureeActivity")
+                    Column {
+                        Button(
+                            onClick = {
+                                val intent = Intent(this@MainActivity, DocPureeActivity::class.java)
+                                startActivity(intent)
+                                Puree.send(RecipeSearch("onClick", (1..Int.MAX_VALUE).random()))
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(text = "DocPureeActivity")
+                        }
                     }
                 }
             }
