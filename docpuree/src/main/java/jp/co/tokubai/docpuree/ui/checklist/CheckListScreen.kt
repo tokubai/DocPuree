@@ -10,7 +10,8 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,21 +24,20 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun CheckListScreen(viewModel: CheckListViewModel) {
     val refreshScope = rememberCoroutineScope()
-    var refreshing by remember { mutableStateOf(false) }
 
     fun refresh() = refreshScope.launch {
-        refreshing = true
+        viewModel.isRefreshing = true
         delay(500)
-        refreshing = false
+        viewModel.isRefreshing = false
     }
 
-    val refreshState = rememberPullRefreshState(refreshing, ::refresh)
+    val refreshState = rememberPullRefreshState(viewModel.isRefreshing, ::refresh)
 
     Scaffold(
         topBar = {
             CheckListAppBar(
                 checkList = viewModel.checkList,
-                isRefreshing = refreshing,
+                isRefreshing = viewModel.isRefreshing,
                 onClickClear = { viewModel.clearCheckList() },
             )
         }
@@ -47,10 +47,10 @@ internal fun CheckListScreen(viewModel: CheckListViewModel) {
                 .fillMaxSize()
                 .pullRefresh(refreshState),
         ) {
-            if (!refreshing) {
+            if (!viewModel.isRefreshing) {
                 CheckListContent(modifier = Modifier.padding(it), viewModel = viewModel)
             }
-            PullRefreshIndicator(refreshing, refreshState, Modifier.align(Alignment.TopCenter))
+            PullRefreshIndicator(viewModel.isRefreshing, refreshState, Modifier.align(Alignment.TopCenter))
         }
     }
 }

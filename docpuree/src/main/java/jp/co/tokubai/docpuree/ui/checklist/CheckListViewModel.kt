@@ -1,6 +1,9 @@
 package jp.co.tokubai.docpuree.ui.checklist
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.tokubai.docpuree.source.CheckListSource
@@ -13,10 +16,13 @@ internal class CheckListViewModel : ViewModel() {
         observeLoggedClass()
     }
 
-    internal val checkList = CheckListSource.checkList
+    val checkList = CheckListSource.checkList
+    var isRefreshing by mutableStateOf(false)
 
     fun clearCheckList() {
+        isRefreshing = true
         CheckListSource.checkList.clear()
+        isRefreshing = false
     }
 
     private fun observeLoggedClass() {
