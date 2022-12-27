@@ -27,12 +27,10 @@ internal fun SearchLogScreen(
 private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLogViewModel) {
     val context = LocalContext.current
 
-    LazyColumn(modifier = modifier, contentPadding = PaddingValues(12.dp)) {
+    LazyColumn(modifier = modifier, contentPadding = PaddingValues(5.dp)) {
         items(DocSource.logDocSet.toList()) { logDoc ->
             Card(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 10.dp),
+                modifier = Modifier.fillMaxSize(),
                 onClick = {
                     viewModel.addLogToCheckList(logDoc.clazz)
                     Toast.makeText(
@@ -51,14 +49,37 @@ private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLog
                     )
                     Spacer(modifier = Modifier.height(4.dp))
 
+                    // Category
+                    logDoc.category?.let { category ->
+                        Chip(
+                            onClick = {},
+                            enabled = false,
+                            colors = ChipDefaults.chipColors(
+                                disabledContentColor = Color.White,
+                                disabledBackgroundColor = Color.Gray,
+                            ),
+                        ) {
+                            Text(text = category)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+
                     // Description
                     Text(text = logDoc.description, style = MaterialTheme.typography.caption)
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Divider()
-                    Spacer(modifier = Modifier.height(8.dp))
 
                     // Params
+                    if (logDoc.params.isNotEmpty()) {
+                        Divider()
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Text(
+                            text = "Parameters",
+                            style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold),
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                    }
                     Column(modifier = Modifier.padding(start = 20.dp)) {
                         logDoc.params.forEach { param ->
                             Text(
@@ -76,6 +97,7 @@ private fun SearchLogContent(modifier: Modifier = Modifier, viewModel: SearchLog
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(5.dp))
         }
     }
 }

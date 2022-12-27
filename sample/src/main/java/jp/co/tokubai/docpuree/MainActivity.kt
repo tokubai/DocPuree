@@ -4,9 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -14,8 +12,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.cookpad.puree.Puree
-import jp.co.tokubai.docpuree.log.entities.RecipeSearch
+import jp.co.tokubai.docpuree.log.entities.*
 import jp.co.tokubai.docpuree.ui.DocPureeActivity
 import jp.co.tokubai.docpuree.ui.theme.DocPureeTheme
 
@@ -24,24 +23,58 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DocPureeTheme {
-                // A surface container using the 'background' color from the theme
-                repeat(10) {
-                    Puree.send(RecipeSearch("hello", it))
-                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Column {
+                    Column(
+                        modifier = Modifier.padding(5.dp),
+                        verticalArrangement = Arrangement.spacedBy(5.dp),
+                    ) {
                         Button(
                             onClick = {
                                 val intent = Intent(this@MainActivity, DocPureeActivity::class.java)
                                 startActivity(intent)
-                                Puree.send(RecipeSearch("onClick", (1..Int.MAX_VALUE).random()))
                             },
                             modifier = Modifier.fillMaxWidth(),
                         ) {
-                            Text(text = "DocPureeActivity")
+                            Text(text = "Open Docpuree Activity")
+                        }
+
+                        Button(
+                            onClick = { Puree.send(OnClickFirst()) },
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(text = "1st")
+                        }
+
+                        Button(
+                            onClick = { Puree.send(OnClickSecond()) },
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(text = "2nd")
+                        }
+
+                        Button(
+                            onClick = { Puree.send(OnClickThird()) },
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(text = "3rd")
+                        }
+
+                        Button(
+                            onClick = { Puree.send(OnClickFourth()) },
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(text = "4th")
+                        }
+
+                        Button(
+                            onClick = { Puree.send(OnClickFifth()) },
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Text(text = "5th")
                         }
                     }
                 }
