@@ -1,20 +1,18 @@
 package jp.co.tokubai.docpuree.model
 
-data class LogInfo(
-    private val clazz: Class<*>,
+data class LogDocItem(
+    val clazz: Class<*>,
     val description: String,
     val category: String?,
     val params: List<ParamInfo>,
 ) {
-    val className: String = clazz.simpleName
-
     data class ParamInfo(
         val title: String,
         val description: String,
     )
 
     override fun equals(other: Any?): Boolean {
-        return (other as? DocItem)?.clazz?.simpleName == clazz.simpleName
+        return (other as? LogDocItem)?.clazz?.simpleName == clazz.simpleName
     }
 
     override fun hashCode(): Int {

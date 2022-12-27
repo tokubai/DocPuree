@@ -14,7 +14,6 @@ class DocPureeRequestBodyCollectInterceptor : Interceptor {
         val buffer = Buffer()
         request.body?.writeTo(buffer)
 
-
         val response = chain.proceed(request)
         if (response.isSuccessful) {
             val responseBody = buffer.readUtf8()
