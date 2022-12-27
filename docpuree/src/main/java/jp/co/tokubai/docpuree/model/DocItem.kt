@@ -1,6 +1,6 @@
 package jp.co.tokubai.docpuree.model
 
-data class DocItem(
+internal data class DocItem(
     val clazz: Class<*>,
     val rawMarkdown: String,
 ) {

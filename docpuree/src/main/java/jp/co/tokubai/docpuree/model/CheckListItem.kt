@@ -1,6 +1,6 @@
 package jp.co.tokubai.docpuree.model
 
-data class CheckListItem(
+internal data class CheckListItem(
     val clazz: Class<*>,
     var successfullyLoggedJson: String? = null,
 ) {

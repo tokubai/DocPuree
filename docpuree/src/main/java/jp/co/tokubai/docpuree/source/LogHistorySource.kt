@@ -5,14 +5,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 object LogHistorySource {
     // Map of serialized Class to Json
-    val serializedClassHistory = mutableListOf<SerializedClassInfo>()
+    internal val serializedClassHistory = mutableListOf<SerializedClassInfo>()
 
     // List of json successfully logged
-    val successfullyLoggedJsonHistory = mutableListOf<String>()
-    val successfullyLoggedJson = MutableStateFlow("")
+    internal val successfullyLoggedJsonHistory = mutableListOf<String>()
+    internal val successfullyLoggedJson = MutableStateFlow("")
 
     // Successfully Logged classes
-    val successfullyLoggedClassHistory: List<Pair<Class<*>, String>>
+    internal val successfullyLoggedClassHistory: List<Pair<Class<*>, String>>
         get() {
             return successfullyLoggedJsonHistory.mapNotNull { successfullyLoggedJson ->
                 val classToSingleJson =
@@ -23,7 +23,7 @@ object LogHistorySource {
             }
         }
 
-    fun getClassesFromLoggedJson(loggedJson: String) : List<Class<*>> {
+    internal fun getClassesFromLoggedJson(loggedJson: String) : List<Class<*>> {
         return serializedClassHistory.filter { loggedJson.contains(it.json) }.map { it.clazz }
     }
 }
