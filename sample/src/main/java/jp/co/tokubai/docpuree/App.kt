@@ -21,7 +21,7 @@ class App : Application() {
         val gson = GsonBuilder().create()
 
         return PureeConfiguration.Builder(context)
-            .pureeSerializer(DocPureeGsonSerializer(gson))
+            .pureeSerializer(DocPureeGsonSerializer(gson, emptyList()))
             .register(
                 logClass = OnClickFirst::class.java,
                 output = output,
