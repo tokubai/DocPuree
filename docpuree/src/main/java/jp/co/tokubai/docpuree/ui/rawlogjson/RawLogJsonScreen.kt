@@ -47,9 +47,10 @@ internal fun RawLogJsonScreen(
             )
         }
     ) {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .pullRefresh(refreshState)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .pullRefresh(refreshState)
         ) {
             if (!refreshing) {
                 RawLogJsonContent(modifier = Modifier.padding(it), viewModel = viewModel)
@@ -76,7 +77,10 @@ private fun RawLogJsonContent(
                 contentPadding = PaddingValues(12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                items(items = state.successfullyLoggedJsonHistory, key = { it }) { classToJson ->
+                items(
+                    items = state.successfullyLoggedJsonHistory.filter { it.isNotBlank() },
+                    key = { it },
+                ) { classToJson ->
                     RowLogJsonItem(json = classToJson)
                 }
             }
