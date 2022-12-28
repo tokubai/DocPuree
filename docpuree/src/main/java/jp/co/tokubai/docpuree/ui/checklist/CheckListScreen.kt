@@ -89,7 +89,7 @@ private fun CheckListContent(
                     Column {
                         Text(text = checkListItem.clazz.simpleName)
                         checkListItem.successfullyLoggedJson?.let {
-                            Text(text = it, color = Color.Green)
+                            Text(text = it, color = MaterialTheme.colors.secondaryVariant)
                         }
                     }
                 }
