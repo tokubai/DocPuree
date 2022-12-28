@@ -1,10 +1,10 @@
-package jp.co.tokubai.docpuree
+package jp.co.tokubai.docpuree.serializer
 
 import com.cookpad.puree.PureeSerializer
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import jp.co.tokubai.docpuree.source.LogHistorySource
 import jp.co.tokubai.docpuree.model.SerializedClassInfo
+import jp.co.tokubai.docpuree.source.LogHistorySource
 
 class DocPureeMoshiSerializer : PureeSerializer {
 

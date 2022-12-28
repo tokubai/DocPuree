@@ -71,4 +71,7 @@ dependencies {
 
     // Moshi
     implementation "com.squareup.moshi:moshi-kotlin:1.14.0"
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.10'
 }

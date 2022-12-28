@@ -4,9 +4,11 @@ import android.app.Application
 import android.content.Context
 import com.cookpad.puree.Puree
 import com.cookpad.puree.PureeConfiguration
+import com.google.gson.GsonBuilder
 import jp.co.tokubai.docpuree.extensions.register
 import jp.co.tokubai.docpuree.log.BufferOutMockServer
 import jp.co.tokubai.docpuree.log.entities.*
+import jp.co.tokubai.docpuree.serializer.DocPureeGsonSerializer
 
 class App : Application() {
     override fun onCreate() {
@@ -16,9 +18,10 @@ class App : Application() {
 
     private fun buildPureeConfig(context: Context): PureeConfiguration {
         val output = BufferOutMockServer()
+        val gson = GsonBuilder().create()
 
         return PureeConfiguration.Builder(context)
-            .pureeSerializer(DocPureeMoshiSerializer())
+            .pureeSerializer(DocPureeGsonSerializer(gson))
             .register(
                 logClass = OnClickFirst::class.java,
                 output = output,

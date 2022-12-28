@@ -76,6 +76,9 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
+    // Gson
+    implementation 'com.google.code.gson:gson:2.10'
+
     // Json Viewer
     implementation 'com.github.smuyyh:JsonViewer:1.0.7'
 
@@ -91,7 +94,7 @@ afterEvaluate {
 
                 groupId = 'com.github.tokubai'
                 artifactId = 'docpuree'
-                version = '1.0.5'
+                version = '1.0.6'
             }
         }
     }
